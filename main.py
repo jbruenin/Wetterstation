@@ -24,7 +24,7 @@ while True:
         dht_hum = dht_sensor.humidity()
         print("DHT11 → Temp: {}°C, Feuchte: {}%".format(dht_temp, dht_hum))
         uart1.write("Temp: {} °C, Feuchte: {} %\n".format(temp, hum))
-        except Exception as e:
+    except Exception as e:
         print("DHT11 Fehler:", e)
         uart.write("DHT11 Fehler: {}\n".format(e))
 
