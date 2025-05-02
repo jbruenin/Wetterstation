@@ -1,31 +1,28 @@
 import time
 import dht
-from machine import Pin
-from machine import I2C, Pin
-import bme280
+from machine import Pin, UART
 
-# I2C Setup
-i2c = I2C(0, scl=Pin(1), sda=Pin(0))  # Passen ggf. an
+# DHT11 Setup (Datenleitung an z. B. GPIO15)
+dht_sensor = dht.DHT11(Pin(15))
 
-# Sensor initialisieren
-bme = bme280.BME280(i2c=i2c)
+# UART Setup (UART1, TX=GPIO4, RX=GPIO5)
+uart = UART(1, baudrate=9600, tx=Pin(4), rx=Pin(5))
 
-sensor = dht.DHT11(Pin(15))  # Passe Pin an
-
+# Loop
 while True:
+    # DHT11 auslesen
     try:
-        sensor.measure()
-        temp = sensor.temperature()
-        hum = sensor.humidity()
-        print("Temperatur: {}°C  Luftfeuchtigkeit: {}%".format(temp, hum))
-    except OSError as e:
-        print("Fehler beim Lesen:", e)
-    # i2c stup
-    emp, pres, hum = bme.read_compensated_data()
-    print("Temperatur: {:.2f} °C".format(temp / 100))
-    print("Luftdruck: {:.2f} hPa".format(pres / 25600))
-    print("Luftfeuchtigkeit: {:.2f} %".format(hum / 1024))
-    print("-----")
-        
-    
-    time.sleep(2)	
+        dht_sensor.measure()
+        temp = dht_sensor.temperature()
+        hum = dht_sensor.humidity()
+        print("DHT11 → Temp: {}°C, Feuchte: {}%".format(temp, hum))
+    except Exception as e:
+        print("DHT11 Fehler:", e)
+
+    # UART-Daten auslesen (falls vorhanden)
+    if uart.any():
+        uart_data = uart.readline()
+        if uart_data:
+            print("UART →", uart_data.decode('utf-8').strip())
+
+    time.sleep(2)
