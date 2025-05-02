@@ -23,10 +23,10 @@ while True:
         dht_temp = dht_sensor.temperature()
         dht_hum = dht_sensor.humidity()
         print("DHT11 → Temp: {}°C, Feuchte: {}%".format(dht_temp, dht_hum))
-        uart1.write("Temp: {} °C, Feuchte: {} %\n".format(temp, hum))
-    except Exception as e:
+        
+   except Exception as e:
         print("DHT11 Fehler:", e)
-        uart1.write("DHT11 Fehler: {}\n".format(e))
+       
 
     # --- BMP280 auslesen ---
     try:
@@ -36,11 +36,21 @@ while True:
        
     except Exception as e:
         print("BMP280 Fehler:", e)
-        uart1.write("BMP280 Fehler: {}\n".format(e))
+        
 
     if uart1.any():
         incoming = uart1.read().decode('utf-8').strip()
         print("UART empfangen:", incoming)
-        uart1.write("Befehl empfangen: {}\n".format(incoming))
+        
+        if incoming.lower() == "read":
+            try:
+                dht_sensor.measure()
+                temp = dht_sensor.temperature()
+                hum = dht_sensor.humidity()
+                print("Temperatur: {} °C, Luftfeuchtigkeit: {} %".format(temp, hum))
+            except OSError as e:
+                print("Fehler beim DHT11-Auslesen:", e)
+        else:
+            print("Unbekannter Befehl:", incoming)
 
     time.sleep(2)
