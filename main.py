@@ -1,7 +1,7 @@
 import time
 import dht
 from machine import Pin, UART, I2C
-from bmp280 import BMP280
+from bmp281 import BMP280
 
 # === DHT11 Setup ===
 dht_sensor = dht.DHT11(Pin(15))  # DHT11 an GPIO15
