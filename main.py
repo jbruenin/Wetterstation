@@ -26,7 +26,7 @@ while True:
         uart1.write("Temp: {} °C, Feuchte: {} %\n".format(temp, hum))
     except Exception as e:
         print("DHT11 Fehler:", e)
-        uart.write("DHT11 Fehler: {}\n".format(e))
+        uart1.write("DHT11 Fehler: {}\n".format(e))
 
     # --- BMP280 auslesen ---
     try:
