@@ -36,7 +36,7 @@ while True:
        
     except Exception as e:
         print("BMP280 Fehler:", e)
-        uart.write("BMP280 Fehler: {}\n".format(e))
+        uart1.write("BMP280 Fehler: {}\n".format(e))
 
     if uart1.any():
         incoming = uart1.read().decode('utf-8').strip()
