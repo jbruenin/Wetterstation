@@ -7,7 +7,7 @@ from bmp281 import BMP280
 dht_sensor = dht.DHT11(Pin(15))  # DHT11 an GPIO15
 
 # === BMP280 Setup (I2C auf GPIO0 = SDA, GPIO1 = SCL) ===
-i2c = I2C(0, scl=Pin(1), sda=Pin(0), freq=100000)
+i2c = I2C(1, scl=Pin(3), sda=Pin(2), freq=100000)
 
 print(i2c.scan())  # Überprüft, welche Adressen verfügbar sind
 
