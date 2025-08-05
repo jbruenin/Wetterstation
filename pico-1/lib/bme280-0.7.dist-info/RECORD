@@ -1,0 +1,5 @@
+bme280-0.7.dist-info/METADATA,,
+bme280/__init__.py,,
+bme280/bme280.py,,
+bme280/bme280_i2c.py,,
+bme280-0.7.dist-info/RECORD,,

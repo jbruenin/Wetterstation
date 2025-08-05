@@ -75,5 +75,3 @@ while True:
 
     # Pause zwischen den Messungen
     time.sleep(2)
-
-

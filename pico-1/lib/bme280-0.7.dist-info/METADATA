@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: bme280
+Version: 0.7
+Summary: Python Driver for the BME280 Temperature/Pressure/Humidity Sensor from Bosch.
+Home-page: https://github.com/kbrownlees/bme280
+Author: Kieran Brownlees
+Author-email: kieran@mootium.co
+License: BSD
+Keywords: bme280
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+License-File: LICENSE
+License-File: AUTHORS.rst
+
+
+For installation instructions see https://github.com/kbrownlees/bme280/blob/master/README.rst
+
+
+# 0.7 (2023-11-29)
+
+* Fix #6 by JLAC11 (thanks!) - Update bme280.py to leave bme280_i2c unexposed
+
